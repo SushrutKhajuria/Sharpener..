@@ -12,3 +12,12 @@ c.style.color = "green"
 
 const d = document.getElementById("thanks")
 d.innerHTML = "<p>Please visit us again</p>";
+
+
+// Write your code below: Q4
+const a = document.getElementsByClassName('fruit')
+a[2].style.backgroundColor = 'yellow'
+
+for (let ele of a) { 
+    ele.style.fontWeight = 'bold'
+}
