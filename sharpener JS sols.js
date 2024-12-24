@@ -21,3 +21,12 @@ a[2].style.backgroundColor = 'yellow'
 for (let ele of a) { 
     ele.style.fontWeight = 'bold'
 }
+
+// Write your code below: Q5
+const l = document.getElementsByTagName("li")
+
+l[4].style.color = "blue";
+
+for (let i = 0; i < l.length; i++) { 
+    l[i].style.fontStyle = "italic";
+}
