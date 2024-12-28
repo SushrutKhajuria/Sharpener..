@@ -1,47 +1,49 @@
-{/* Q14 */}
+{/* Q.15 */}
 
-{/* .JS part */}
-
+// Write your code below:
 function handleFormSubmit(event) {
-    event.preventDefault(); // Prevent the form from reloading the page
+    event.preventDefault();
 
-    // Extract form data
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const phone = event.target.phone.value;
+    let username = event.target.username.value;
+    let email = event.target.email.value;
+    let phone = event.target.phone.value;
 
-    // Create a user object
-    const userDetails = { username, email, phone };
+    const newUser = {
+        username: username,
+        email: email,
+        phone: phone
+    };
 
-    // Get existing users from localStorage
     const existingUsers = JSON.parse(localStorage.getItem("UserDetails")) || [];
 
-    // Add new user
-    existingUsers.push(userDetails);
+    existingUsers.push(newUser);
 
-    // Save back to localStorage
     localStorage.setItem("UserDetails", JSON.stringify(existingUsers));
 
-    // Display updated list of users
-    displayUsers();
+    displayUsers(existingUsers);
 }
 
-function displayUsers() {
-    const userList = document.getElementById("userList");
-    userList.innerHTML = ""; // Clear existing list
+function displayUsers(users) {
+    let userList = document.querySelector("ul");
 
-    // Get users from localStorage
-    const users = JSON.parse(localStorage.getItem("UserDetails")) || [];
+    userList.innerHTML = "";
 
-    // Populate the list
-    users.forEach((user) => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `Name: ${user.username}, Email: ${user.email}, Phone: ${user.phone}`;
+    users.forEach((user, index) => {
+        let listItem = document.createElement("li");
+        listItem.innerHTML = `Username: ${user.username} Email: ${user.email} Phone: ${user.phone} <button onclick="deleteUser(${index})">Delete</button>`;
+
         userList.appendChild(listItem);
     });
 }
 
-// Display existing users when the page loads
-document.addEventListener("DOMContentLoaded", displayUsers);
+function deleteUser(index) {
+    let existingUsers = JSON.parse(localStorage.getItem("UserDetails")) || [];
 
-module.exports = handleFormSubmit
+    existingUsers.splice(index, 1);
+
+    localStorage.setItem("UserDetails", JSON.stringify(existingUsers));
+
+    displayUsers(existingUsers);
+}
+
+module.exports = handleFormSubmit;
