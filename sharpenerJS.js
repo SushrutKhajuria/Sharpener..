@@ -1,14 +1,16 @@
-/* Q12 js */
+
+{/* Q.13. js */}
 
 function handleFormSubmit(event) {
-    event.preventDefault();
+    event.preventDefault(); 
+    const userDetails = {
+        username: event.target.username.value,
+        email: event.target.email.value,
+        phone: event.target.phone.value
+    };
 
-    let username = event.target.username.value
-    let email = event.target.email.value
-    let phone = event.target.phone.value
-
-    localStorage.setItem("Username", username)
-    localStorage.setItem("Email", email)
-    localStorage.setItem("Phone", phone)
+    
+    localStorage.setItem("User Details", JSON.stringify(userDetails));
 }
+
 module.exports = handleFormSubmit
